@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Music_Visual.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LineColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">255,0,191,255</Value>
+    </Setting>
+    <Setting Name="Target" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2048</Value>
+    </Setting>
+    <Setting Name="LineWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="BarWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="Skip" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Take" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2048</Value>
+    </Setting>
+    <Setting Name="visualType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">频域</Value>
+    </Setting>
+    <Setting Name="leftColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">255,0,191,255</Value>
+    </Setting>
+    <Setting Name="rightColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">255,0,191,255</Value>
+    </Setting>
+    <Setting Name="isLine" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="amplitude" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="smooth" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="deviation" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="margin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0,0,0,50</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

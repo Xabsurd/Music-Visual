@@ -1,0 +1,50 @@
+﻿<Window x:Class="Music_Visual.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Music_Visual"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        AllowsTransparency="True"
+        Background="#0000"
+        WindowStyle="None"
+        
+        >
+    <!--<WindowChrome.WindowChrome>
+        <WindowChrome></WindowChrome>Style="{StaticResource StandardStyle}"
+    </WindowChrome.WindowChrome>-->
+    <Grid x:Name="grid">
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="images/865030.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>-->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="00"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+            <Button x:Name="bt_close"  VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" Height="30" Click="Button_Click" Background="#02000000">X</Button>
+        </Grid>
+        <Grid Grid.Row="1" WindowChrome.IsHitTestVisibleInChrome="True">
+            <!--<local:DrawingVisualElement x:Name="dve"></local:DrawingVisualElement>-->
+            <Image x:Name="img" ></Image>
+            <!--<TextBlock x:Name="tb"></TextBlock>
+            <TextBlock x:Name="tb1" Background="#fff" HorizontalAlignment="Left" Margin="743,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+            <TextBlock x:Name="tb2" HorizontalAlignment="Left" Margin="743,24,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>-->
+        </Grid>
+        <tb:TaskbarIcon IconSource="images/icon1.ico" ToolTipText="背景设置" MenuActivation="LeftOrRightClick" TrayMouseDoubleClick="MenuItem_Click_Setting" x:Name="tbi">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="设置" Click="MenuItem_Click_Setting"/>
+                    <MenuItem Header="退出" Click="MenuItem_Click_Close"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+    </Grid>
+
+
+</Window>

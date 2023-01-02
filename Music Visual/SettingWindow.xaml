@@ -1,0 +1,143 @@
+﻿<Window x:Class="Music_Visual.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Music_Visual"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="SettingWindow" Height="450" Width="800"
+        xmlns:converters="clr-namespace:Music_Visual.Converters" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <converters:Color2Brush x:Key="c2b"></converters:Color2Brush>
+            <SolidColorBrush x:Key="DefaultBrush" Color="#FF39C0ED" />
+            <Style TargetType="TextBlock">
+                <Style.Setters>
+                    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="Padding" Value="5"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="Slider" BasedOn="{StaticResource SliderStyle}">
+                <Style.Setters>
+                    <Setter Property="IsSnapToTickEnabled" Value="True"></Setter>
+                </Style.Setters>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="0,5"></Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}" CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style.Setters>
+
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="目标采样率:" ></TextBlock>
+        <Slider  x:Name="target"  Grid.Column="1" Maximum="2048"  Minimum="1"  ></Slider>
+        <TextBlock  Grid.Column="2" Text="{Binding Value, ElementName=target}"></TextBlock>
+
+        <TextBlock Text="线条颜色:"  Grid.Row="1" ></TextBlock>
+        <Button x:Name="cpbut" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="{Binding SelectedColor, ElementName=lineColor,Converter={StaticResource c2b}}" BorderThickness="0">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="popup" Storyboard.TargetProperty="IsOpen">
+                                <DiscreteBooleanKeyFrame KeyTime="00:00:00.001" Value="True">
+
+                                </DiscreteBooleanKeyFrame>
+                            </BooleanAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+        <Popup x:Name="popup" PlacementTarget="{Binding ElementName=cpbut}" StaysOpen="False" PopupAnimation="Fade">
+            <metro:ColorCanvas x:Name="lineColor" Width="{Binding ActualWidth, ElementName=cpbut, Mode=OneWay}"></metro:ColorCanvas>
+        </Popup>
+
+
+        <TextBlock Text="线条宽度" Grid.Row="2"></TextBlock>
+        <Slider  x:Name="lineWidth"  Grid.Row="2" Grid.Column="1"  Maximum="20" Minimum="1" ></Slider>
+        <TextBlock  Grid.Row="2" Grid.Column="2" Text="{Binding Value, ElementName=lineWidth,StringFormat={}{0}px}"></TextBlock>
+
+        <TextBlock Text="截取前N个片段" Grid.Row="4"></TextBlock>
+        <Grid  Grid.Row="4" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding LowerValue, ElementName=clip}"></TextBlock>
+            <metro:RangeSlider x:Name="clip" Grid.Column="1" Minimum="0" Maximum="2048" MinRangeWidth="10" IsSnapToTickEnabled="True"></metro:RangeSlider>
+        </Grid>
+        <TextBlock Grid.Row="4" Grid.Column="2"  Text="{Binding UpperValue, ElementName=clip}" ></TextBlock>
+
+        <TextBlock Text="显示类型" Grid.Row="5"></TextBlock>
+        <ComboBox x:Name="visualType" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" >
+            <ComboBoxItem Content="时域" Padding="7" FontSize="14"/>
+            <ComboBoxItem Content="频域" Padding="7" FontSize="14"/>
+        </ComboBox>
+
+        <TextBlock Text="幅度" Grid.Row="6"></TextBlock>
+        <Slider  x:Name="amplitude"  Grid.Row="6" Grid.Column="1"  Maximum="20" Minimum="1" ></Slider>
+        <TextBlock  Grid.Row="6" Grid.Column="2" Text="{Binding Value, ElementName=amplitude}"></TextBlock>
+
+        <TextBlock Text="图形" Grid.Row="7"></TextBlock>
+        <metro:ToggleSwitch Grid.Row="7" Grid.Column="1" x:Name="isLine" IsOn="True" OffContent="柱状" OnContent="折线" />
+
+        <TextBlock Text="是否平滑" Grid.Row="8"></TextBlock>
+        <metro:ToggleSwitch Grid.Row="8" Grid.Column="1" x:Name="smooth" IsOn="True" OffContent="否" OnContent="是" />
+        <TextBlock Text="渲染位置" Grid.Row="9"></TextBlock>
+        <TextBox  Grid.Row="9" Grid.Column="1" x:Name="margin"></TextBox>
+        <!--<TextBlock Text="右通道颜色" Grid.Row="7"></TextBlock>
+        <metro:SplitButton x:Name="channelTypes" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0" >
+        </metro:SplitButton>-->
+
+        <!--<TextBlock Text="柱状图宽度" Grid.Row="3"></TextBlock>
+        <aduskin:AduFlatSilder x:Name="barWidth" Grid.Row="3" Grid.Column="1"  Maximum="20" Minimum="1" Value="15"/>
+        <TextBlock  Grid.Row="3" Grid.Column="2" Text="{Binding Value, ElementName=barWidth,StringFormat={}{0}px}"></TextBlock>
+
+        <TextBlock Text="截取前N个片段" Grid.Row="4"></TextBlock>
+        <aduskin:AduFlatSilder  x:Name="skip" Grid.Row="4" Grid.Column="1"  Maximum="20" Minimum="-1" Value="15"/>
+
+        <TextBlock Text="截取后N个片段" Grid.Row="5"></TextBlock>
+        <aduskin:AduFlatSilder  x:Name="take" Grid.Row="5" Grid.Column="1"  Maximum="20" Minimum="-1" Value="15" />
+
+        <TextBlock Text="截取后N个片段" Grid.Row="6"></TextBlock>
+        <aduskin:AduComboBox  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" IsEditable="True" Foreground="#000"  Watermark="请选择" Background="Transparent" CornerRadius="3">
+            <ComboBoxItem Content="上海" Tag="1" />
+            <ComboBoxItem Content="北京" Tag="1" />
+            <ComboBoxItem Content="追求极致，永臻完美" Tag="1" />
+        </aduskin:AduComboBox>-->
+    </Grid>
+</Window>
